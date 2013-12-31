@@ -1,10 +1,17 @@
-SpreePredictionIo
-=================
+Spree Prediction Io
+===
 
-Introduction goes here.
+Do not use this gem yet :)
+
 
 Installation
 ------------
+
+### PredictionIo
+
+See the predictionIo site for installation instructions: [http://docs.prediction.io/current/installation/index.html](http://docs.prediction.io/current/installation/index.html)
+
+### Spree Prediction Io
 
 Add spree_prediction_io to your Gemfile:
 
