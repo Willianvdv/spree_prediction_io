@@ -26,6 +26,15 @@ bundle
 bundle exec rails g spree_prediction_io:install
 ```
 
+Sync your data
+---
+
+To sync users:
+
+```
+$ bundle exec rake predictionio:sync:users
+```
+
 Testing
 -------
 
