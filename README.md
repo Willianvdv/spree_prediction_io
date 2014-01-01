@@ -22,7 +22,7 @@ gem 'spree_prediction_io' github: 'Willianvdv/spree_prediction_io'
 Sync your data
 ---
 
-Sync users and products
+Sync users, products and conversion
 
 ```
 $ bundle exec rake predictionio:sync:all
@@ -38,6 +38,12 @@ Sync products:
 
 ```
 $ bundle exec rake predictionio:sync:products
+```
+
+Sync conversions: 
+
+```
+$ bundle exec rake predictionio:sync:line_items
 ```
 
 Copyright (c) 2014 Willian van der Velde, released under the New BSD License
