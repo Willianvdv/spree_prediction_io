@@ -41,9 +41,30 @@ namespace :predictionio do
       end
     end
 
+   task :line_items => :environment do
+      line_items = Spree::LineItem.joins(:order)
+                                  .where('spree_orders.user_id is not null')
+                                  .where('spree_orders.completed_at IS NOT NULL')
+      progressbar = ProgressBar.create(total: line_items.count)
+      puts "Going to sync #{line_items.count} line items"
+      
+      predictionio_client = PredictionIO::Client.new(ENV["PREDICTIONIO_API_KEY"])
+      line_items.all.each do |line_item|
+        order = line_item.order
+        user = order.user
+        product = line_item.product
+        predictionio_client.identify user.id
+        predictionio_client.record_action_on_item("conversion", 
+                                                  pio_iid: product.id,
+                                                  prio_t: order.completed_at)
+        progressbar.increment
+      end
+    end
+
     task :all => :environment do
       Rake::Task["predictionio:sync:users"].invoke
       Rake::Task["predictionio:sync:products"].invoke
+      Rake::Task["predictionio:sync:line_items"].invoke
     end
   end
 end
