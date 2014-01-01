@@ -16,7 +16,11 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree_core', '~> 2.1.2'
+  #s.add_dependency 'spree_core', '~> 2.1.2'
+  s.add_dependency 'predictionio'
+  s.add_dependency 'figaro'
+  s.add_dependency 'ruby-progressbar'
+
 
   s.add_development_dependency 'capybara', '~> 2.1'
   s.add_development_dependency 'coffee-rails'
