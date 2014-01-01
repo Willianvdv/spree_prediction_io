@@ -41,6 +41,9 @@ namespace :predictionio do
       end
     end
 
-
+    task :all => :environment do
+      Rake::Task["predictionio:sync:users"].invoke
+      Rake::Task["predictionio:sync:products"].invoke
+    end
   end
 end
