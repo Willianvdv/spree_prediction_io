@@ -38,7 +38,6 @@ Sync products:
 
 ```
 $ bundle exec rake predictionio:sync:products
-
 ```
 
 Copyright (c) 2014 Willian van der Velde, released under the New BSD License
