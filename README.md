@@ -1,7 +1,7 @@
 Spree Prediction Io
 ===
 
-Do not use this gem yet :)
+I want to use predictionio's recommendation engines for my Spree shops. This gem provides tasks to upload user, product and conversions. Step 2 is to retrieve the computed data from PredictionIo and present that to my users.
 
 
 Installation
