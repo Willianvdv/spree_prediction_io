@@ -3,13 +3,35 @@ require 'figaro'
 require 'ruby-progressbar'
 
 namespace :predictionio do
+  def predictionio_client
+    @predictionio_client ||= PredictionIO::Client.new(ENV["PREDICTIONIO_API_KEY"])
+  end
+
+  namespace :pull do
+    task :similar_products, [:engine_name] => :environment do |t, args|
+      engine_name = args.engine_name
+      unless engine_name.nil?
+        products = Spree::Product
+        puts "Going to pull #{products.count} products"
+        progressbar = ProgressBar.create(total: products.count)
+
+        products.all.each do |product|
+          similar_products = predictionio_client.aget_itemsim_top_n(engine_name, product.id, 10)
+          # todo: do something with the results
+          progressbar.increment
+        end
+      else
+        puts "ERROR: No engine name is given. Usage is 'rake predictionio:pull:similar_products[<engine_name>]'"
+      end
+    end
+  end
+
   namespace :push do
     task :users => :environment do
       users = Spree::User
       progressbar = ProgressBar.create(total: users.count)
       puts "Going to push #{users.count} users"
       
-      predictionio_client = PredictionIO::Client.new(ENV["PREDICTIONIO_API_KEY"])
       users.all.each do |user|
         predictionio_client.create_user(user.id)
         progressbar.increment
@@ -21,7 +43,6 @@ namespace :predictionio do
       progressbar = ProgressBar.create(total: products.count)
       puts "Going to push #{products.count} products"
       
-      predictionio_client = PredictionIO::Client.new(ENV["PREDICTIONIO_API_KEY"])
       products.all.each do |product|       
         product_property_data = Hash[(product.properties.map { |p| [p.name.to_sym, product.property(p.name)] })]
         # todo: Move this to some object so users can add their custom product attributes
@@ -48,7 +69,6 @@ namespace :predictionio do
       progressbar = ProgressBar.create(total: line_items.count)
       puts "Going to push #{line_items.count} line items"
       
-      predictionio_client = PredictionIO::Client.new(ENV["PREDICTIONIO_API_KEY"])
       line_items.all.each do |line_item|
         order = line_item.order
         user = order.user
