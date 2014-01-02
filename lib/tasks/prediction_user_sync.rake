@@ -3,11 +3,11 @@ require 'figaro'
 require 'ruby-progressbar'
 
 namespace :predictionio do
-  namespace :sync do
+  namespace :push do
     task :users => :environment do
       users = Spree::User
       progressbar = ProgressBar.create(total: users.count)
-      puts "Going to sync #{users.count} users"
+      puts "Going to push #{users.count} users"
       
       predictionio_client = PredictionIO::Client.new(ENV["PREDICTIONIO_API_KEY"])
       users.all.each do |user|
@@ -19,7 +19,7 @@ namespace :predictionio do
     task :products => :environment do
       products = Spree::Product
       progressbar = ProgressBar.create(total: products.count)
-      puts "Going to sync #{products.count} products"
+      puts "Going to push #{products.count} products"
       
       predictionio_client = PredictionIO::Client.new(ENV["PREDICTIONIO_API_KEY"])
       products.all.each do |product|       
@@ -46,7 +46,7 @@ namespace :predictionio do
                                   .where('spree_orders.user_id is not null')
                                   .where('spree_orders.completed_at IS NOT NULL')
       progressbar = ProgressBar.create(total: line_items.count)
-      puts "Going to sync #{line_items.count} line items"
+      puts "Going to push #{line_items.count} line items"
       
       predictionio_client = PredictionIO::Client.new(ENV["PREDICTIONIO_API_KEY"])
       line_items.all.each do |line_item|
@@ -62,9 +62,9 @@ namespace :predictionio do
     end
 
     task :all => :environment do
-      Rake::Task["predictionio:sync:users"].invoke
-      Rake::Task["predictionio:sync:products"].invoke
-      Rake::Task["predictionio:sync:line_items"].invoke
+      Rake::Task["predictionio:push:users"].invoke
+      Rake::Task["predictionio:push:products"].invoke
+      Rake::Task["predictionio:push:line_items"].invoke
     end
   end
 end

@@ -27,25 +27,25 @@ Sync your data
 Sync users, products and conversion
 
 ```
-$ bundle exec rake predictionio:sync:all
+$ bundle exec rake predictionio:push:all
 ```
 
 Sync users:
 
 ```
-$ bundle exec rake predictionio:sync:users
+$ bundle exec rake predictionio:push:users
 ```
 
 Sync products: 
 
 ```
-$ bundle exec rake predictionio:sync:products
+$ bundle exec rake predictionio:push:products
 ```
 
 Sync conversions: 
 
 ```
-$ bundle exec rake predictionio:sync:line_items
+$ bundle exec rake predictionio:push:line_items
 ```
 
 Copyright (c) 2014 Willian van der Velde, released under the New BSD License
