@@ -24,28 +24,20 @@ Place your PredictionIO api key in `config/application.yml`. For now I'm using F
 Sync your data
 ---
 
-Push users, products and conversion
+### Push data
 
 ```
 $ bundle exec rake predictionio:push:all
 ```
 
-Push users:
+### Pull data
+
+To pull similar products:
 
 ```
-$ bundle exec rake predictionio:push:users
+$ bundle exec rake predictionio:pull:similar_products[my_engine_name]
 ```
 
-Push products: 
-
-```
-$ bundle exec rake predictionio:push:products
-```
-
-Push conversions: 
-
-```
-$ bundle exec rake predictionio:push:line_items
-```
+---
 
 Copyright (c) 2014 Willian van der Velde, released under the New BSD License
