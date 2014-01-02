@@ -16,7 +16,8 @@ namespace :predictionio do
         progressbar = ProgressBar.create(total: products.count)
 
         products.all.each do |product|
-          similar_products = predictionio_client.aget_itemsim_top_n(engine_name, product.id, 10)
+          number_of_results = 10
+          similar_products = predictionio_client.aget_itemsim_top_n(engine_name, product.id, number_of_results)
           # todo: do something with the results
           progressbar.increment
         end
