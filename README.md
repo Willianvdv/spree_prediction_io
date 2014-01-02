@@ -19,7 +19,7 @@ Add spree_prediction_io to your Gemfile:
 gem 'spree_prediction_io' github: 'Willianvdv/spree_prediction_io'
 ```
 
-Place your PredictionIO api key in `config/application.yml`. For now I'm using Figaro, in the future I will use Spree configuration.
+Place your PredictionIO api key in `config/application.yml`. For now I'm using Figaro, in the future I will use the Spree configuration.
 
 Sync your data
 ---
