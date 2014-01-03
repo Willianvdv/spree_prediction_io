@@ -38,6 +38,16 @@ To pull similar products:
 $ bundle exec rake predictionio:pull:similar_products[my_engine_name]
 ```
 
+This will return something like this:
+
+```
+PS3 Sony Dualshock 3 Slate Grey relates to:
+	- PS3 Sony Dualshock 3 Urban Camouflage
+	- PS3 Sony Dualshock 3 Metallic Gold
+	- Grand Theft Auto V
+	- FIFA 14
+```
+
 ---
 
 Copyright (c) 2014 Willian van der Velde, released under the New BSD License
