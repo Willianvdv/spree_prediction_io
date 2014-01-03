@@ -32,7 +32,7 @@ $ bundle exec rake predictionio:push:all
 
 ### Pull data
 
-To pull similar products:
+To pull similar products (engine status must be `Running`):
 
 ```
 $ bundle exec rake predictionio:pull:similar_products[my_engine_name]
