@@ -33,6 +33,33 @@ namespace :predictionio do
         puts "ERROR: No engine name is given. Usage is 'rake predictionio:pull:similar_products[<engine_name>]'"
       end
     end
+
+    task :recommendations, [:engine_name] => :environment do |t, args|
+      engine_name = args.engine_name
+      unless engine_name.nil?
+        users = Spree::User
+        puts "Going to pull recommendations for #{users.count} users"
+
+        users.all.each do |user|
+          begin
+            number_of_results = 10
+            predictionio_client.identify(user.id)
+            recommended_products = predictionio_client.get_itemrec_top_n(engine_name, number_of_results)
+            
+            # Todo: do something usefull with the results
+            puts "Recommended products for #{user.id} (#{user.email}):"
+            recommended_products.each do |recommended_product_id|
+              recommended_product = Spree::Product.find(recommended_product_id)
+              puts "\t- #{recommended_product.name}"
+            end
+          rescue PredictionIO::Client::ItemRecNotFoundError => e
+            #puts "Recommendation not found"
+          end
+        end
+      else
+        puts "ERROR: No engine name is given. Usage is 'rake predictionio:pull:similar_products[<engine_name>]'"
+      end
+    end
   end
 
   namespace :push do
