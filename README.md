@@ -51,7 +51,7 @@ PS3 Sony Dualshock 3 Slate Grey relates to:
 To pull recommendations for users:
 
 ```
-$ bundle exec rake predictionio:pull:recommendations\[my_engine_name]
+$ bundle exec rake predictionio:pull:recommendations[my_engine_name]
 ```
 
 This will return something like this:
