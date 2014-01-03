@@ -13,14 +13,21 @@ namespace :predictionio do
       unless engine_name.nil?
         products = Spree::Product
         puts "Going to pull #{products.count} products"
-        progressbar = ProgressBar.create(total: products.count)
 
         products.all.each do |product|
-          number_of_results = 10
-          similar_products = predictionio_client.get_itemsim_top_n(engine_name, product.id, number_of_results)
-          p similar_products
-          # todo: do something with the results
-          progressbar.increment
+          begin
+            number_of_results = 10
+            similar_products = predictionio_client.get_itemsim_top_n(engine_name, product.id, number_of_results)
+            
+            # Todo: do something usefull with the results
+            puts "#{product.name} relates to:"
+            similar_products.each do |similar_product_id|
+              similar_product = Spree::Product.find(similar_product_id)
+              puts "\t- #{similar_product.name}"
+            end
+          rescue PredictionIO::Client::ItemSimNotFoundError => e
+            #puts "Recommendation not found"
+          end
         end
       else
         puts "ERROR: No engine name is given. Usage is 'rake predictionio:pull:similar_products[<engine_name>]'"
