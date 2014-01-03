@@ -7,12 +7,8 @@ Gem::Specification.new do |s|
   s.description = 'TODO: Add (optional) gem description here'
   s.required_ruby_version = '>= 1.9.3'
 
-  # s.author    = 'You'
-  # s.email     = 'you@example.com'
-  # s.homepage  = 'http://www.spreecommerce.com'
-
-  #s.files       = `git ls-files`.split("\n")
-  #s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.author    = 'Willian van der Velde'
+  s.email     = 'willian@reinaris.nl'
   s.require_path = 'lib'
   s.requirements << 'none'
 
@@ -20,7 +16,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'predictionio'
   s.add_dependency 'figaro'
   s.add_dependency 'ruby-progressbar'
-
 
   s.add_development_dependency 'capybara', '~> 2.1'
   s.add_development_dependency 'coffee-rails'
