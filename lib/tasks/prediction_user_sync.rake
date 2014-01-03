@@ -77,7 +77,7 @@ namespace :predictionio do
         product = line_item.product
         predictionio_client.identify user.id
         predictionio_client.record_action_on_item("conversion", 
-                                                  pio_iid: product.id,
+                                                  product.id,
                                                   prio_t: order.completed_at)
         progressbar.increment
       end
