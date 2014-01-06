@@ -79,21 +79,8 @@ namespace :predictionio do
       progressbar = ProgressBar.create(total: products.count)
       puts "Going to push #{products.count} products"
       
-      products.all.each do |product|       
-        product_property_data = Hash[(product.properties.map { |p| [p.name.to_sym, product.property(p.name)] })]
-        # todo: Move this to some object so users can add their custom product attributes
-        product_data = {pio_price: product.price,
-                        name: product.name,
-                        description: product.description,
-                        permalink: product.permalink,
-                        meta_description: product.meta_description,
-                        meta_keywords: product.meta_keywords}
-        product_data.merge! product_property_data
-       
-        magic_number_type_id = 1
-        predictionio_client.create_item(product.id, 
-                                        [magic_number_type_id,], 
-                                        product_data)
+      products.all.each do |product|
+        product.sync_with_prediction_io predictionio_client
         progressbar.increment
       end
     end
