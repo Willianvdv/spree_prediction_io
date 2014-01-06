@@ -1,13 +1,12 @@
 require 'spec_helper'
 
-describe Spree::LineItem do
-  subject { FactoryGirl.create :line_item }
+describe Spree.user_class do
+  subject { FactoryGirl.create :user }
 
   describe ".sync_with_prediction_io" do
     it "should call prediction io" do
       prediction_io_client = double("prediction_io_client")
-      prediction_io_client.should_receive(:identify).with(subject.order.user.id)
-      prediction_io_client.should_receive(:record_action_on_item)
+      prediction_io_client.should_receive(:create_user).with(subject.id)
       subject.sync_with_prediction_io prediction_io_client
     end
   end

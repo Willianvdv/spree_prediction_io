@@ -69,7 +69,7 @@ namespace :predictionio do
       puts "Going to push #{users.count} users"
       
       users.all.each do |user|
-        predictionio_client.create_user(user.id)
+        user.sync_with_prediction_io predictionio_client
         progressbar.increment
       end
     end
