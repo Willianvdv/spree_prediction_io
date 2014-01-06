@@ -93,13 +93,7 @@ namespace :predictionio do
       puts "Going to push #{line_items.count} line items"
       
       line_items.all.each do |line_item|
-        order = line_item.order
-        user = order.user
-        product = line_item.product
-        predictionio_client.identify user.id
-        predictionio_client.record_action_on_item("conversion", 
-                                                  product.id,
-                                                  prio_t: order.completed_at)
+        line_item.sync_with_prediction_io predictionio_client
         progressbar.increment
       end
     end
