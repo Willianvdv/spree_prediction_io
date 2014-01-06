@@ -1,6 +1,8 @@
 Spree Prediction IO
 ===
 
+[![Build Status](https://travis-ci.org/Willianvdv/spree_prediction_io.png?branch=master)](https://travis-ci.org/Willianvdv/spree_prediction_io)
+
 I want to use PredictionIO's recommendation engines for my Spree shops. This gem provides tasks to upload user, product and conversions. Step 2 is to retrieve the computed data from PredictionIO and present that to my users.
 
 
