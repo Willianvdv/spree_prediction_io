@@ -40,7 +40,7 @@ To pull similar products (engine status must be `Running`):
 $ bundle exec rake predictionio:pull:similar_products[my_engine_name]
 ```
 
-This will create related products. To give you an idea it will be something like this:
+This will create related products. To give you an idea, it will be something like this:
 
 ```
 PS3 Sony Dualshock 3 Slate Grey relates to:
