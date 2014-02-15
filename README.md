@@ -18,7 +18,7 @@ See the PredictionIO site for installation instructions: [http://docs.prediction
 Add spree_prediction_io to your Gemfile:
 
 ```ruby
-gem 'spree_prediction_io' github: 'Willianvdv/spree_prediction_io'
+gem 'spree_prediction_io', github: 'Willianvdv/spree_prediction_io'
 ```
 
 Place your PredictionIO api key in `config/application.yml`. For now I'm using Figaro, in the future I will use the Spree configuration.
